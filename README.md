@@ -111,4 +111,10 @@ Mesmo com recall limitado, o modelo demonstra potencial para reduzir perdas fina
 - Balanceamento da base (SMOTE)  
 - Otimização de hiperparâmetros (GridSearch)  
 - Teste com modelos mais robustos (XGBoost, Logistic Regression)  
-- Simulação mais detalhada de impacto financeiro  
+- Simulação mais detalhada de impacto financeiro
+
+---
+
+git clone https://github.com/LeoneLucio/Classificacao_de_credito
+cd Classificacao_de_credito
+pip install -r requirements.txt
