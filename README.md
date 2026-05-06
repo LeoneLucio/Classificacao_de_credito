@@ -55,7 +55,7 @@ O desafio é equilibrar risco e retorno, priorizando a identificação de client
 - Recall (inadimplentes): **~23%**  
 - Precision: **~19–24%**  
 
-> O modelo apresentou boa capacidade geral, porém com limitações na identificação da classe minoritária (inadimplentes), o que é esperado em bases altamente desbalanceadas.
+> O modelo apresentou capacidade limitada na identificação de inadimplentes (recall ~23%), o que evidencia o desafio de trabalhar com bases altamente desbalanceadas.
 
 ---
 
@@ -99,10 +99,10 @@ a definição do threshold impacta diretamente o equilíbrio entre risco e retor
 
 Considerando:
 
-- Cliente adimplente: +5 unidades de lucro  
-- Cliente inadimplente: -100 unidades de prejuízo  
+Cliente adimplente: +5 unidades de lucro
+Cliente inadimplente: -100 unidades de prejuízo
 
-A aplicação do modelo demonstrou potencial para redução de perdas financeiras ao evitar concessões de alto risco.
+Mesmo com recall limitado, o modelo demonstra potencial para reduzir perdas financeiras ao evitar concessões de alto risco, especialmente quando combinado com thresholds mais conservadores. Pequenas melhorias na identificação de inadimplentes podem gerar grande impacto financeiro devido à assimetria entre lucro e prejuízo
 
 ---
 
