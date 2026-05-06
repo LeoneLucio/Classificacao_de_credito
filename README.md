@@ -59,7 +59,7 @@ O desafio é equilibrar risco e retorno, priorizando a identificação de client
 
 ---
 
-## 📌 Principais Insights
+## Principais Insights
 
 - Clientes com **menor tempo de emprego** apresentam maior probabilidade de inadimplência  
 - A **ausência de informação sobre emprego** pode indicar risco elevado  
@@ -68,7 +68,7 @@ O desafio é equilibrar risco e retorno, priorizando a identificação de client
 
 ---
 
-## 🤖 Modelagem
+## Modelagem
 
 - Algoritmo: **Random Forest**  
 - Tratamento de variáveis categóricas com **one-hot encoding**  
@@ -77,7 +77,7 @@ O desafio é equilibrar risco e retorno, priorizando a identificação de client
 
 ---
 
-## ⚖️ Trade-off de Negócio
+## Trade-off de Negócio
 
 O modelo permite ajustar o nível de risco através da definição de threshold:
 
@@ -86,7 +86,7 @@ O modelo permite ajustar o nível de risco através da definição de threshold:
 
 ---
 
-## 💡 Aplicação no Negócio
+## Aplicação no Negócio
 
 O modelo pode ser utilizado como ferramenta de apoio na decisão de crédito, permitindo ajustar o nível de risco aceitável pela empresa.
 
@@ -106,13 +106,9 @@ A aplicação do modelo demonstrou potencial para redução de perdas financeira
 
 ---
 
-## 🚀 Próximos Passos
+## Próximos Passos
 
 - Balanceamento da base (SMOTE)  
 - Otimização de hiperparâmetros (GridSearch)  
 - Teste com modelos mais robustos (XGBoost, Logistic Regression)  
 - Simulação mais detalhada de impacto financeiro  
-
----
-
-## 📁 Estrutura do Projeto
