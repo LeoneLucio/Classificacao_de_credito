@@ -1,139 +1,118 @@
 # Previsão de Inadimplência em Concessão de Crédito
 
-##  Sobre o projeto
+## Contexto
 
-Este projeto tem como objetivo prever a inadimplência de clientes no momento da concessão de crédito, utilizando técnicas de análise de dados e machine learning.
+Conceder crédito sem avaliar risco é uma das formas mais rápidas de gerar prejuízo em uma instituição financeira.
+
+Neste projeto, desenvolvi um modelo de machine learning para prever inadimplência no momento da solicitação de um cartão de crédito, com foco em apoiar decisões mais seguras e orientadas por dados.
 
 A inadimplência é definida como atraso igual ou superior a 90 dias em um período de 12 meses.
 
-O modelo desenvolvido auxilia na tomada de decisão, permitindo equilibrar **risco (prejuízo)** e **retorno (aprovação de crédito)**.
-
 ---
 
-## Problema de negócio
+## Problema de Negócio
 
-Na concessão de crédito, existem dois erros críticos:
+Na concessão de crédito, decisões incorretas geram impacto direto no resultado financeiro:
 
-* **Falso positivo** → Aprovar cliente inadimplente → prejuízo financeiro
-* **Falso negativo** → Recusar cliente bom → perda de receita
+- **Falso positivo**: conceder crédito a um cliente inadimplente → prejuízo  
+- **Falso negativo**: recusar um bom cliente → perda de receita  
 
-O objetivo do modelo é **minimizar esses riscos**, com foco maior na identificação de clientes inadimplentes.
+O desafio é equilibrar risco e retorno, priorizando a identificação de clientes com maior probabilidade de inadimplência.
 
 ---
 
 ## Dataset
 
-* ~16.650 registros
-* 16 variáveis (demográficas, financeiras e comportamentais)
-* Variável alvo: `mau` (inadimplente = 1, adimplente = 0)
-* Base altamente desbalanceada (~2% inadimplentes)
+- ~16.650 registros  
+- 16 variáveis (demográficas, financeiras e comportamentais)  
+- Variável alvo: `mau` (1 = inadimplente, 0 = adimplente)  
+- Base altamente desbalanceada (~2,3% inadimplentes)  
 
 ---
 
-## Tecnologias utilizadas
+## Tecnologias Utilizadas
 
-* Python
-* Pandas
-* NumPy
-* Seaborn / Matplotlib
-* Scikit-learn
-
----
-
-## Etapas do projeto
-
-### 1. Entendimento dos dados
-
-* Análise exploratória (EDA)
-* Identificação de inconsistências (ex: tempo de emprego negativo)
-
-### 2. Preparação dos dados
-
-* Tratamento de valores inválidos
-* Criação de variável indicadora de ausência (`sem_emprego_info`)
-* Codificação de variáveis categóricas (one-hot encoding)
-
-### 3. Modelagem
-
-* Algoritmo: Random Forest
-* Ajuste para desbalanceamento com `class_weight='balanced'`
-* Divisão treino/teste com `stratify`
-
-### 4. Avaliação
-
-* Métricas utilizadas:
-
-  * Recall
-  * Precision
-  * ROC-AUC
-* Curva ROC
-* Matriz de confusão
-* Feature importance
-
-### 5. Ajuste de decisão (diferencial do projeto)
-
-* Uso de probabilidades (`predict_proba`)
-* Ajuste de threshold para controle de risco
+- Python  
+- Pandas / NumPy  
+- Seaborn / Matplotlib  
+- Scikit-learn  
 
 ---
 
-## Resultados
+## Etapas do Projeto (CRISP-DM)
 
-* O modelo conseguiu identificar padrões relevantes de inadimplência
-* Acurácia isolada se mostrou inadequada devido ao desbalanceamento
-* O recall da classe inadimplente foi priorizado
-
-### Trade-off de negócio
-
-Ajustando o threshold:
-
-* Threshold menor → maior detecção de inadimplentes (↓ prejuízo)
-* Threshold maior → maior aprovação de clientes (↑ receita)
+1. **Entendimento do negócio**  
+2. **Análise exploratória (EDA)**  
+3. **Preparação dos dados**  
+4. **Modelagem (Random Forest)**  
+5. **Avaliação do modelo**  
 
 ---
 
-## Principais aprendizados
+## Resultados do Modelo
 
-* Métricas tradicionais podem ser enganosas em dados desbalanceados
-* Modelos não tomam decisões — **o negócio define o threshold**
-* Explicabilidade (feature importance) é essencial em crédito
-* Pequenos ajustes podem gerar grande impacto financeiro
+- Acurácia: **~97%** *(não confiável isoladamente devido ao desbalanceamento)*  
+- Recall (inadimplentes): **~23%**  
+- Precision: **~19–24%**  
 
----
-
-## Próximos passos
-
-* Balanceamento com SMOTE
-* Otimização de hiperparâmetros (GridSearch)
-* Teste com outros modelos (XGBoost, Logistic Regression)
-* Simulação de impacto financeiro
+> O modelo apresentou boa capacidade geral, porém com limitações na identificação da classe minoritária (inadimplentes), o que é esperado em bases altamente desbalanceadas.
 
 ---
 
-## Estrutura do projeto
+## 📌 Principais Insights
 
-```bash
-├── data/
-│   └── demo01.csv
-├── notebook/
-│   └── projeto_credito.ipynb
-├── script/
-│   └── projeto_credito.py
-└── README.md
-```
+- Clientes com **menor tempo de emprego** apresentam maior probabilidade de inadimplência  
+- A **ausência de informação sobre emprego** pode indicar risco elevado  
+- Variáveis isoladas possuem baixo poder preditivo, mas ganham força quando combinadas  
+- O forte **desbalanceamento da base** impacta diretamente a escolha de métricas e abordagem do modelo  
 
 ---
 
-## Contato
+## 🤖 Modelagem
 
-Se quiser trocar ideias ou discutir o projeto:
-
-* LinkedIn: https://www.linkedin.com/in/leonelucio/
+- Algoritmo: **Random Forest**  
+- Tratamento de variáveis categóricas com **one-hot encoding**  
+- Separação treino/teste  
+- Avaliação com múltiplas métricas (Recall, Precision, ROC-AUC)
 
 ---
 
-## ⭐ Considerações finais
+## ⚖️ Trade-off de Negócio
 
-Este projeto foi desenvolvido com foco em conectar análise de dados com tomada de decisão de negócio, especialmente em um contexto realista de crédito.
+O modelo permite ajustar o nível de risco através da definição de threshold:
 
-Mais do que construir um modelo, o objetivo foi entender **como ele pode ser utilizado na prática**.
+- Threshold menor → maior detecção de inadimplentes (↓ prejuízo)  
+- Threshold maior → maior aprovação de clientes (↑ receita)  
+
+---
+
+## 💡 Aplicação no Negócio
+
+O modelo pode ser utilizado como ferramenta de apoio na decisão de crédito, permitindo ajustar o nível de risco aceitável pela empresa.
+
+Mais importante que o modelo em si, é como ele é utilizado:  
+a definição do threshold impacta diretamente o equilíbrio entre risco e retorno.
+
+---
+
+## Simulação de Impacto Financeiro
+
+Considerando:
+
+- Cliente adimplente: +5 unidades de lucro  
+- Cliente inadimplente: -100 unidades de prejuízo  
+
+A aplicação do modelo demonstrou potencial para redução de perdas financeiras ao evitar concessões de alto risco.
+
+---
+
+## 🚀 Próximos Passos
+
+- Balanceamento da base (SMOTE)  
+- Otimização de hiperparâmetros (GridSearch)  
+- Teste com modelos mais robustos (XGBoost, Logistic Regression)  
+- Simulação mais detalhada de impacto financeiro  
+
+---
+
+## 📁 Estrutura do Projeto
